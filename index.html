@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAIBOKPATITIKAT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-dark: #325737;
+            --primary-medium: #17855a;
+            --primary-light: #D7CCC8;
+            --accent-gold: #FFD700;
+            --accent-cream: #ec830b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--accent-cream);
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(56, 168, 81, 0.7), rgba(20, 65, 31, 0.7));
+            z-index: 1;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('LOGO.jpg') no-repeat center center;
+            background-size: cover;
+            animation: zoomEffect 20s infinite alternate;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .gallery-item {
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(78, 52, 46, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .project-card .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(78, 52, 46, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(45deg, var(--primary-medium), var(--accent-gold));
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .btn-gold:hover {
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .btn-gold::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover::after {
+            left: 120%;
+        }
+        
+        .animate-text {
+            animation: textReveal 1.5s ease-out;
+        }
+        
+        @keyframes textReveal {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+        .delay-4 { animation-delay: 0.7s; }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .map-container {
+            position: relative;
+            height: 0;
+            overflow: hidden;
+            padding-bottom: 56.25%;
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            background-color: rgba(121, 85, 72, 0.3);
+            border: 1px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background-color: rgba(121, 85, 72, 0.5);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+        
+        .progress-bar {
+            height: 5px;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--accent-gold);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-[#4E342E] bg-opacity-90 z-50 shadow-lg transition duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <h1 class="text-2xl font-bold gold-text">LAIBOKPATITIKAT</h1>
+                </div>
+                
+                <!-- Menu Items -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Beranda</a>
+                        <a href="#about" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Tentang</a>
+                        <a href="#projects" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Projek</a>
+                        <a href="#gallery" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Galeri</a>
+                        <a href="#video" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Video</a>
+                        <a href="#location" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Lokasi</a>
+                        <a href="#contact" class="nav-link text-accent-cream px-3 py-2 rounded-md text-sm font-medium">Kontak</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-accent-cream focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#4E342E] pb-4 transition duration-300">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Beranda</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Tentang</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Projek</a>
+                <a href="#gallery" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Galeri</a>
+                <a href="#video" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Video</a>
+                <a href="#location" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Lokasi</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-accent-cream hover:text-accent-gold">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content flex items-center justify-center h-full pt 20">
+            <div class="text-center px-4">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 gold-text animate-text">LAIBOKPATITIKAT</h1>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 animate-text delay-1">Menghadirkan keunggulan dalam setiap karya dengan sentuhan elegan dan profesionalisme tanpa kompromi</p>
+                <a href="#about" class="btn-gold text-white px-8 py-4 rounded-md text-lg animate-text delay-2 inline-block">Jelajahi Lebih Lanjut <i class="fas fa-chevron-down ml-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gold-text mb-4 animate-text">Tentang Kami</h2>
+            <div class="w-24 h-1 bg-accent-gold mx-auto animate-text"></div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/2">
+                <img src="home_laibokpatitikat.jpg" alt="Tim profesional LAIBOKPATITIKAT sedang berdiskusi di ruang meeting modern dengan interior kayu" class="rounded-lg shadow-xl w-full animate-img">
+            </div>
+            <div class="md:w-1/2">
+                <h3 class="text-3xl font-bold mb-6 animate-text delay-1">Mengapa Memilih LAIBOKPATITIKAT?</h3>
+                <p class="mb-6 animate-text delay-1">Sejak berdiri tahun 2010, kami telah mengukir reputasi sebagai penyedia solusi profesional dengan pendekatan kreatif dan teknis yang komprehensif. Setiap projek adalah cerita unik dimana kami menanamkan dedikasi dan keahlian.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex gap-4 animate-text delay-1">
+                        <div class="text-accent-gold">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <p>Tim profesional berpengalaman lebih dari 10 tahun di bidangnya</p>
+                    </div>
+                    <div class="flex gap-4 animate-text delay-2">
+                        <div class="text-accent-gold">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <p>Lebih dari 500 projek berhasil diselesaikan dengan kepuasan klien</p>
+                    </div>
+                    <div class="flex gap-4 animate-text delay-3">
+                        <div class="text-accent-gold">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <p>Pendekatan kreatif yang mengutamakan kualitas dan keunikan</p>
+                    </div>
+                </div>
+                
+                <button class="btn-gold mt-8 text-white px-6 py-3 rounded-md animate-text delay-4">Pelajari Lebih Lanjut</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto border-t border-[#795548] my-20"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gold-text mb-4 animate-text">Projek Unggulan</h2>
+            <div class="w-24 h-1 bg-accent-gold mx-auto animate-text"></div>
+            <p class="mt-4 max-w-2xl mx-auto animate-text delay-1">Portofolio pencapaian kami yang membanggakan, membuktikan dedikasi dan keahlian</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="project-card rounded-lg overflow-hidden shadow-lg animate-text delay-1">
+                <div class="h-64 overflow-hidden">
+                    <img src="punen.jpg" alt="Projek pembangunan gedung perkantoran modern dengan arsitektur futuristik" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-[#5D4037]">
+                    <h3 class="text-xl font-bold mb-2">Gedung Perkantoran Nusantara</h3>
+                    <p class="mb-4">Bangunan 15 lantai dengan konsep green building di jantung ibukota</p>
+                    <span class="text-sm text-accent-gold">Completed 2022</span>
+                </div>
+                <div class="project-overlay">
+                    <a href="#" class="btn-gold text-white px-4 py-2 rounded-md">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="project-card rounded-lg overflow-hidden shadow-lg animate-text delay-2">
+                <div class="h-64 overflow-hidden">
+                    <img src="pasititi.jpg" alt="Projek interior luxury villa dengan desain minimalis modern" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-[#5D4037]">
+                    <h3 class="text-xl font-bold mb-2">Luxury Villa Bintaro</h3>
+                    <p class="mb-4">Villa mewah dengan sentuhan modern minimalis di area premium</p>
+                    <span class="text-sm text-accent-gold">Completed 2021</span>
+                </div>
+                <div class="project-overlay">
+                    <a href="#" class="btn-gold text-white px-4 py-2 rounded-md">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="project-card rounded-lg overflow-hidden shadow-lg animate-text delay-3">
+                <div class="h-64 overflow-hidden">
+                    <img src="pasititi2.jpg" alt="Projek renovasi heritage building menjadi museum kontemporer" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-[#5D4037]">
+                    <h3 class="text-xl font-bold mb-2">Museum Seni Modern</h3>
+                    <p class="mb-4">Transformasi bangunan heritage menjadi museum seni kontemporer</p>
+                    <span class="text-sm text-accent-gold">Completed 2020</span>
+                </div>
+                <div class="project-overlay">
+                    <a href="#" class="btn-gold text-white px-4 py-2 rounded-md">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 animate-text delay-4">
+            <a href="#" class="btn-gold text-white px-6 py-3 rounded-md inline-block">Lihat Semua Projek <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto border-t border-[#795548] my-20"></div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gold-text mb-4 animate-text">Galeri Karya</h2>
+            <div class="w-24 h-1 bg-accent-gold mx-auto animate-text"></div>
+            <p class="mt-4 max-w-2xl mx-auto animate-text delay-1">Momen dan detail yang mengabadikan proses kreatif kami</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-1">
+                <img src="LAIBOK_PATITIKAT.jpg" alt="Proses pembangunan gedung perkantoran sedang berlangsung dengan kerangka struktur yang mengesankan">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Proses Konstruksi</h3>
+                    <p class="text-sm">Progress pembangunan tahap 2</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-1">
+                <img src="alat1.jpg" alt="Detail arsitektur interior ruang tamu dengan pencahayaan alami yang sempurna">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Detail Arsitektur</h3>
+                    <p class="text-sm">Sentuhan akhir finishing</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-2">
+                <img src="LAIBOK_PATITIKAT.jpg" alt="Tim arsitek sedang melakukan presentasi konsep dengan mockup fisik di atas meja">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Diskusi Kreatif</h3>
+                    <p class="text-sm">Sesi brainstorming konsep</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-2">
+                <img src="alat1.jpg" alt="Proyek akhir tampak luar gedung dengan landscape yang indah dan pencahayaan senja">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Hasil Akhir</h3>
+                    <p class="text-sm">Photoshoot proyek selesai</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-3">
+                <img src="punen.jpg" alt="Detail material kayu premium dengan tekstur dan finishing eksklusif">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Material Eksklusif</h3>
+                    <p class="text-sm">Finishing kayu premium</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-3">
+                <img src="pasititi2.jpg" alt="Area outdoor dengan kolam renang infinity yang menghadap pemandangan kota">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Area Outdoor</h3>
+                    <p class="text-sm">Infinity pool dengan view kota</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-4">
+                <img src="pasititi.jpg" alt="Interior ruang makan dengan furniture custom dan chandelier kristal">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Ruang Makan Elegant</h3>
+                    <p class="text-sm">Furniture custom design</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item rounded-lg overflow-hidden shadow-lg animate-text delay-4">
+                <img src="punen.jpg" alt="Tampak atas proyek pembangunan dari udara menunjukkan kompleksitas struktur">
+                <div class="overlay">
+                    <h3 class="text-xl font-bold mb-2">Tampak Udara</h3>
+                    <p class="text-sm">Dokumentasi drone</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 animate-text delay-4">
+            <a href="#" class="btn-gold text-white px-6 py-3 rounded-md inline-block">Lihat Galeri Lengkap <i class="fas fa-images ml-2"></i></a>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto border-t border-[#795548] my-20"></div>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gold-text mb-4 animate-text">Video Dokumentasi</h2>
+            <div class="w-24 h-1 bg-accent-gold mx-auto animate-text"></div>
+            <p class="mt-4 max-w-2xl mx-auto animate-text delay-1">Visualisasi dinamis yang menangkap esensi karya kami</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="animate-text delay-1">
+                <div class="video-wrapper rounded-lg overflow-hidden shadow-lg">
+                    <iframe src="https://www.youtube.com/embed/placeholder" allowfullscreen></iframe>
+                </div>
+                <h3 class="text-xl font-bold mt-4">Tur Virtual Gedung Nusantara</h3>
+                <p class="text-sm text-accent-light">Video 360° pengalaman penuh dalam gedung</p>
+            </div>
+            
+            <div class="animate-text delay-2">
+                <div class="video-wrapper rounded-lg overflow-hidden shadow-lg">
+                    <iframe src="https://www.youtube.com/embed/placeholder" allowfullscreen></iframe>
+                </div>
+                <h3 class="text-xl font-bold mt-4">Proses Kreatif Desain</h3>
+                <p class="text-sm text-accent-light">Behind the scene tim kreatif kami</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto border-t border-[#795548] my-20"></div>
+
+    <!-- Location Section -->
+    <section id="location" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gold-text mb-4 animate-text">Lokasi Kami</h2>
+            <div class="w-24 h-1 bg-accent-gold mx-auto animate-text"></div>
+            <p class="mt-4 max-w-2xl mx-auto animate-text delay-1">Kunjungi kantor kami untuk diskusi lebih lanjut</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="animate-text delay-1">
+                <div class="map-container rounded-lg overflow-hidden shadow-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126915.640139178!2d106.8373779!3d-6.2293869999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x100c5e82dd4b820!2sJakarta!5e0!3m2!1sen!2sid!4v1623745633820!5m2!1sen!2sid"></iframe>
+                </div>
+            </div>
+            
+            <div class="animate-text delay-2">
+                <h3 class="text-2xl font-bold mb-6">Kantor Pusat LAIBOKPATITIKAT</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent-gold text-xl mt-1">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Alamat</p>
+                            <p>Jl. Profesional No. 123, Jakarta Selatan, Indonesia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent-gold text-xl mt-1">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Jam Kerja</p>
+                            <p>Senin - Jumat: 09.00 - 17.00</p>
+                            <p>Sabtu: 09.00 - 13.00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent-gold text-xl mt-1">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Telepon</p>
+                            <p>+62 21 1234 5678</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent-gold text-xl mt-1">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Email</p>
+                            <p>info@laibokpatitikat.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="text-xl font-bold mt-8 mb-4">Area Pelayanan Kami</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Jakarta</span>
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Bogor</span>
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Depok</span>
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Tangerang</span>
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Bekasi</span>
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Bandung</span>
+                    <span class="bg-[#5D4037] px-3 py-1 rounded-full text-sm">Bali</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto border-t border-[#795548] my-20"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gold-text mb-4 animate-text">Hubungi Kami</h2>
+            <div class="w-24 h-1 bg-accent-gold mx-auto animate-text"></div>
+            <p class="mt-4 max-w-2xl mx-auto animate-text delay-1">Kami siap membantu mewujudkan visi Anda</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <form class="contact-form animate-text delay-1">
+                <div class="mb-6">
+                    <label for="name" class="block mb-2">Nama Lengkap</label>
+                    <input type="text" id="name" class="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-accent-gold" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="email" class="block mb-2">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-accent-gold" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="phone" class="block mb-2">Nomor Telepon</label>
+                    <input type="tel" id="phone" class="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-accent-gold">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="subject" class="block mb-2">Subjek</label>
+                    <select id="subject" class="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-accent-gold bg-[#5D4037]">
+                        <option value="">Pilih subjek...</option>
+                        <option value="consultation">Konsultasi Proyek</option>
+                        <option value="partnership">Kemitraan</option>
+                        <option value="career">Karir</option>
+                        <option value="other">Lainnya</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="message" class="block mb-2">Pesan</label>
+                    <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-accent-gold" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-gold text-white px-6 py-3 rounded-md w-full">Kirim Pesan <i class="fas fa-paper-plane ml-2"></i></button>
+            </form>
+            
+            <div class="animate-text delay-2">
+                <h3 class="text-2xl font-bold mb-4">Atau hubungi kami langsung melalui</h3>
+                <div class="space-y-6">
+                    <div class="bg-[#5D4037] bg-opacity-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">WhatsApp</h4>
+                        <a href="#" class="flex items-center gap-4 hover:text-accent-gold transition duration-300">
+                            <div class="text-4xl text-green-500">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <p class="text-lg">+62 812 3456 7890</p>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-[#5D4037] bg-opacity-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">Media Sosial</h4>
+                        <div class="flex gap-4 text-2xl">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[#5D4037] bg-opacity-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">Butuh Respon Cepat?</h4>
+                        <p>Untuk pertanyaan mendesak, silakan hubungi kami langsung melalui telepon:</p>
+                        <p class="text-lg font-semibold mt-2">+62 21 9876 5432</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#4E342E] py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold gold-text mb-4">LAIBOKPATITIKAT</h3>
+                    <p class="mb-4">Menghadirkan keunggulan dalam setiap karya dengan sentuhan elegan dan profesionalisme tanpa kompromi</p>
+                    <div class="flex gap-4 text-xl">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Menu</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-accent-gold transition duration-300">Beranda</a></li>
+                        <li><a href="#about" class="hover:text-accent-gold transition duration-300">Tentang</a></li>
+                        <li><a href="#projects" class="hover:text-accent-gold transition duration-300">Projek</a></li>
+                        <li><a href="#gallery" class="hover:text-accent-gold transition duration-300">Galeri</a></li>
+                        <li><a href="#video" class="hover:text-accent-gold transition duration-300">Video</a></li>
+                        <li><a href="#location" class="hover:text-accent-gold transition duration-300">Lokasi</a></li>
+                        <li><a href="#contact" class="hover:text-accent-gold transition duration-300">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Layanan</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-accent-gold transition duration-300">Desain Arsitektur</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition duration-300">Konstruksi Bangunan</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition duration-300">Interior Design</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition duration-300">Renovasi</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition duration-300">Manajemen Proyek</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="mb-4">Dapatkan update terbaru tentang projek dan penawaran spesial kami</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Email Anda" class="px-4 py-2 rounded-l-md w-full bg-[#5D4037] focus:outline-none focus:ring-2 focus:ring-accent-gold">
+                        <button class="bg-accent-gold text-[#4E342E] px-4 py-2 rounded-r-md font-semibold">Daftar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-[#795548] pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2023 LAIBOKPATITIKAT. All Rights Reserved.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-accent-gold transition duration-300">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-accent-gold transition duration-300">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-accent-gold transition duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-accent-gold text-[#4E342E] w-12 h-12 rounded-full flex items-center justify-center opacity-0 invisible transition duration-300 shadow-lg">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-text');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Progress bar
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form validation
+        const contactForm = document.querySelector('.contact-form');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form here
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (name === '' || email === '' || message === '') {
+                    alert('Mohon lengkapi semua field yang wajib diisi');
+                    return;
+                }
+                
+                // Form submission logic would go here
+                alert('Terima kasih! Pesan Anda telah terkirim.');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
